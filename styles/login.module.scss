@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    padding: 1rem 0rem;
+
+    display: flex;
+    flex-direction: column;
+
+    input {
+      display: block;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-toggler {
+      background-color: transparent;
+      outline: none;
+      box-shadow: none;
+
+      position: absolute;
+      top: 0%;
+      right: 0%;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.main {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
