@@ -19,7 +19,7 @@ const reducer = (state: any, action: AnyAction) => {
     const nextState = {
       ...state,
       team: {
-        teams: state?.team.teams ?? [],
+        ...state.team,
         players: action.payload.team.players,
       },
     };
