@@ -23,6 +23,24 @@ export const teamSlice = createSlice({
     setPlayers(state, action) {
       state.players = action.payload;
     },
+    addTeams(state, action) {
+      state.teams = [...state.teams, ...action.payload];
+    },
+    addPlayers(state, action) {
+      state.players = [...state.players, ...action.payload];
+    },
+    updatePlayerTeam(state, action) {
+      state.teams = state.teams.map((team: ITeam) => {
+        if (team !== action.payload.teamId) {
+          return team;
+        }
+
+        return {
+          ...team,
+          players: [...team.players, action.payload.player],
+        };
+      });
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -34,7 +52,8 @@ export const teamSlice = createSlice({
   },
 });
 
-export const { setTeams, setPlayers } = teamSlice.actions;
+export const { setTeams, setPlayers, addPlayers, updatePlayerTeam } =
+  teamSlice.actions;
 
 export const getTeams = (state: AppState) => state.team.teams;
 export const getPlayers = (state: AppState) => state.team.players;
