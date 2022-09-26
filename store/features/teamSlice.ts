@@ -26,6 +26,9 @@ export const teamSlice = createSlice({
     addTeams(state, action) {
       state.teams = [...state.teams, ...action.payload];
     },
+    addTeam(state, action) {
+      state.teams = [...state.teams, action.payload];
+    },
     addPlayers(state, action) {
       state.players = [...state.players, ...action.payload];
     },
@@ -52,8 +55,14 @@ export const teamSlice = createSlice({
   },
 });
 
-export const { setTeams, setPlayers, addPlayers, updatePlayerTeam } =
-  teamSlice.actions;
+export const {
+  setTeams,
+  addTeam,
+  addTeams,
+  setPlayers,
+  addPlayers,
+  updatePlayerTeam,
+} = teamSlice.actions;
 
 export const getTeams = (state: AppState) => state.team.teams;
 export const getPlayers = (state: AppState) => state.team.players;

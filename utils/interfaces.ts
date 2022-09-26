@@ -6,6 +6,7 @@ export interface IPlayer {
 }
 
 export interface ITeam {
+  id: number | string;
   name: string;
   playerCount: number;
   region: string;
