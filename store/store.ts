@@ -14,11 +14,14 @@ const combinedReducer = combineReducers({
   [teamSlice.name]: teamSlice.reducer,
 });
 
-const reducer: typeof combinedReducer = (state, action: AnyAction) => {
+const reducer = (state: any, action: AnyAction) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,
-      ...action.payload.teams,
+      team: {
+        teams: state?.team.teams ?? [],
+        players: action.payload.team.players,
+      },
     };
     return nextState;
   } else {
