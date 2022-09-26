@@ -14,7 +14,9 @@ export const Select: FC<Props> = ({ name, label, options }) => {
       <label>{label}</label>
       <Field as="select" name={name}>
         {options.map(([value, label]) => (
-          <option value={value}>{label}</option>
+          <option key={value} value={value}>
+            {label}
+          </option>
         ))}
       </Field>
       <ErrorMessage name={name} component="div" />
