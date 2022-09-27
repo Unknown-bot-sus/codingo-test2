@@ -1,0 +1,10 @@
+.team-card {
+  width: 15rem;
+  height: 10rem;
+  padding: 1em;
+  box-shadow: 0em 0em 0.4em rgb(230, 228, 228);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

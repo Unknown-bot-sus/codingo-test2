@@ -2,20 +2,14 @@ import Head from "next/head";
 import { NextPageWithLayout } from "types/page";
 import Layout from "@/layouts/.";
 import { get } from "@/utils/api";
-import {
-  addPlayers,
-  getPlayers,
-  getTeams,
-  setPlayers,
-} from "@/store/features/teamSlice";
+import { addPlayers, getPlayers, getTeams } from "@/store/features/teamSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { PlayerCard } from "@/components/PlayerCard";
 import { IPlayer, ITeam } from "@/utils/interfaces";
 
 import styles from "@/styles/index.module.scss";
 import { TeamCard } from "@/components/TeamCard";
-import { useState } from "react";
-import { wrapper } from "@/store/store";
+import { useEffect, useState } from "react";
 import { getUserName } from "@/store/features/authSlice";
 import { MyModal } from "@/components/MyModal";
 import { TeamForm } from "@/components/TeamForm";
@@ -28,7 +22,7 @@ const Home: NextPageWithLayout<Props> = () => {
   const players = useSelector(getPlayers);
   const teams = useSelector(getTeams);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   async function fetchMore() {
     if (username === "") {
@@ -39,6 +33,16 @@ const Home: NextPageWithLayout<Props> = () => {
     dispatch(addPlayers(res.data.data));
     setPage(res.data.meta.per_page);
   }
+
+  useEffect(() => {
+    if (username === "") {
+      return;
+    }
+    get(`/players?per_page=10&page=${page}`).then((res: any) => {
+      dispatch(addPlayers(res.data.data));
+      setPage(res.data.meta.per_page);
+    });
+  }, []);
 
   return (
     <div>
@@ -87,15 +91,5 @@ const Home: NextPageWithLayout<Props> = () => {
 Home.getLayout = (page) => {
   return <Layout>{page}</Layout>;
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const res = await get("players?per_page=10");
-    await store.dispatch(setPlayers(res.data.data));
-    return {
-      props: {},
-    };
-  }
-);
 
 export default Home;
