@@ -16,7 +16,7 @@ export const PlayerCard: FC<Props> = ({ player }) => {
   return (
     <div className={styles["player-card"]}>
       <span>{`${player.first_name} ${player.last_name}`}</span>
-      <span>Team: {team ?? "no team"}</span>
+      <span>{`Team: ${team ?? "no team"}`}</span>
       <MyModal
         btn={
           <MyModal.Button>
