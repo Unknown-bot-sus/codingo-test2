@@ -20,14 +20,22 @@ export const teamSlice = createSlice({
     setTeams(state, action) {
       state.teams = action.payload;
     },
-    setPlayers(state, action) {
-      state.players = action.payload;
-    },
     addTeams(state, action) {
       state.teams = [...state.teams, ...action.payload];
     },
     addTeam(state, action) {
       state.teams = [...state.teams, action.payload];
+    },
+    updateTeam(state, action) {
+      state.teams = state.teams.map((team) =>
+        team.id === action.payload.id ? { ...team, ...action.payload } : team
+      );
+    },
+    deleteTeam(state, action) {
+      state.teams = state.teams.filter((team) => team.id !== action.payload);
+    },
+    setPlayers(state, action) {
+      state.players = action.payload;
     },
     addPlayers(state, action) {
       state.players = [...state.players, ...action.payload];
@@ -59,6 +67,8 @@ export const {
   setTeams,
   addTeam,
   addTeams,
+  updateTeam,
+  deleteTeam,
   setPlayers,
   addPlayers,
   updatePlayerTeam,

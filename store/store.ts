@@ -14,14 +14,12 @@ const combinedReducer = combineReducers({
   [teamSlice.name]: teamSlice.reducer,
 });
 
-const reducer = (state: any, action: AnyAction) => {
+const reducer: typeof combinedReducer = (state, action: AnyAction) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,
-      team: {
-        ...state.team,
-        players: action.payload.team.players,
-      },
+      // TODO: Handle hydration that don't want to be erased
+      ...action.payload,
     };
     return nextState;
   } else {
