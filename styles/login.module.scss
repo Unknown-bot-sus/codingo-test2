@@ -22,8 +22,9 @@
       box-shadow: none;
 
       position: absolute;
-      top: 0%;
-      right: 0%;
+      top: 50%;
+      right: calc(0% + 0.5em);
+      transform: translateY(-50%);
 
       cursor: pointer;
     }

@@ -1,6 +1,7 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 import { FC } from "react";
 import styles from "@/styles/form/input.module.scss";
+import { MyErrorMessage } from "./MyErrorMessage";
 
 interface Props {
   name: string;
@@ -13,7 +14,7 @@ export const Input: FC<Props> = ({ name, type, label }) => {
     <div className={styles["form-group"]}>
       <label>{label}</label>
       <Field type={type} name={name} />
-      <ErrorMessage name={name} component="div" />
+      <MyErrorMessage name={name} />
     </div>
   );
 };
