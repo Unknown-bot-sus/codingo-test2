@@ -20,7 +20,9 @@ export const Nav: NextPageWithLayout = () => {
 
   return (
     <div className={styles["nav-container"]}>
-      <Link href="/">Football team manager</Link>
+      <Link className="home-link" href="/">
+        <a className="home-link">Football team manager</a>
+      </Link>
       <div>
         <span className={styles["user-name"]}>
           <BsPersonCircle /> {username}

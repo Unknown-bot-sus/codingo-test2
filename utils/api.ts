@@ -6,7 +6,7 @@ const apiClient = axios.create({
 });
 
 function errorHandler(err: typeof Error) {
-  //TODO: Handle Errors
+  //TODO: Handle all Errors from api
 }
 
 export const get = asyncErrorWrapper(async (endpoint: string, headers = {}) => {
